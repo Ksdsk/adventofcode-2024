@@ -28,7 +28,7 @@ public class ListNumDiff {
         Arrays.sort(rightColumn);
 
         System.out.println(String.format("Sum of Differences: %d", getSumOfDifference(leftColumn, rightColumn)));
-        System.out.println(String.format("Sum of Differences: %d", getSimilarityScore(leftColumn, similarityMap)));
+        System.out.println(String.format("Similarity Score: %d", getSimilarityScore(leftColumn, similarityMap)));
     }
 
     private static int getSumOfDifference(final int[] leftColumn, final int[] rightColumn) {
