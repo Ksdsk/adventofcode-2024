@@ -26,7 +26,7 @@ public class RecordKeeping {
         for (int i = 0; i < RECORDS_LENGTH; i++) {
             final int[] record = Arrays.stream(scanner.nextLine().split(" ")).mapToInt(Integer::parseInt).toArray();
             final int[] reversed = reversedArray(record);
-            int trend = checkTrend(record);
+            final int trend = checkTrend(record);
             if (trend > 0) {
                 if (isValidIncreasingSequence(record, dampeningSetting) || isValidDecreasingSequence(reversed, dampeningSetting)) {
                     validScore++;
