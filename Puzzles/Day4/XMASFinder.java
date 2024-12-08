@@ -14,6 +14,7 @@ public class XMASFinder {
         final char[][] input = bootstrapAndReturnFileContent();
 
         System.out.println(String.format("# of XMAS: %d", getSumOfSequences(input)));
+        System.out.println(String.format("# of X-MAS: %d", getSumOfCrossMas(input)));
     }
 
     private static int getSumOfSequences(final char[][] data) {
@@ -42,6 +43,40 @@ public class XMASFinder {
         sum += getDiagonalQ3Score(pos_i, pos_j, data);
         sum += getDiagonalQ4Score(pos_i, pos_j, data);
         return sum;
+    }
+
+    private static int getSumOfCrossMas(final char[][] data) {
+        int sum = 0;
+        
+        for (int i = 0; i < data.length; i++) {
+            for (int j = 0; j < data.length; j++) {
+                if (data[i][j] == 'A') {
+                    sum += getCrossMasScore(i, j, data);
+                }
+            }
+        }
+
+
+        return sum;
+    }
+
+    private static int getCrossMasScore(final int pos_i, final int pos_j, final char[][] data) {
+        if (stonkMas(pos_i, pos_j, data) && stinkMas(pos_i, pos_j, data)) {
+            return 1;
+        }
+        return 0;
+    }
+
+    private static boolean stonkMas(final int pos_i, final int pos_j, final char[][] data) {
+        boolean mas = data[pos_i-1][pos_j-1] == 'M' && data[pos_i+1][pos_j+1] == 'S';
+        boolean sam = data[pos_i-1][pos_j-1] == 'S' && data[pos_i+1][pos_j+1] == 'M';
+        return mas || sam;
+    }
+
+    private static boolean stinkMas(final int pos_i, final int pos_j, final char[][] data) {
+        boolean mas = data[pos_i+1][pos_j-1] == 'M' && data[pos_i-1][pos_j+1] == 'S';
+        boolean sam = data[pos_i+1][pos_j-1] == 'S' && data[pos_i-1][pos_j+1] == 'M';
+        return mas || sam;
     }
 
     private static int getVerticalUpwardsScore(final int pos_i, final int pos_j, final char[][] data) {
